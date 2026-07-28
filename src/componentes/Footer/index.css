@@ -1,0 +1,32 @@
+footer{
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-items: center;
+ width: 100%;
+ height: 150px;
+ background-color: silver;
+}
+
+footer .colegio{
+    background-color: red;
+    width: 50%;
+}
+
+footer .colegio .nomeColegio{
+   font-weight: bold;
+   font-size: 20px;
+   margin-top: 20px;
+   margin-left: 20px;
+}
+
+footer .desenvolvedor{
+    background-color: blue;
+    width: 50%;
+}
+
+footer .desenvolvedor .nomeDesenvolvedor{
+    font-weight: bold;
+    font-size: 20px;
+}
+
