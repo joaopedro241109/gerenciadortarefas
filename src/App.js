@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
 
 import Footer from './componentes/Footer';
 import Header from './componentes/Header';
@@ -17,7 +17,7 @@ function App() {
           <Route path="/contto" element={<Contato />} />
           <Route path="/sobre" element={<Sobre />} />
         </Routes>
-      </main>
+      </main>|
       <Footer />
     </BrowserRouter>
   );
