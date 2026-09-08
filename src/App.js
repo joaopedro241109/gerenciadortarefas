@@ -6,6 +6,9 @@ import Header from './componentes/Header';
 import Home from './paginas/Home';
 import Contato from './paginas/Contato';
 import Sobre from './paginas/Sobre';
+import ListarTarefas from './paginas/Home/ListarTarefas';
+import ListarUmaTarefa from './paginas/ListarUmaTarefa';
+import CadastrarTarefa from './paginas/CadastrarTarefa';
 
 function App() {
   return (
@@ -14,8 +17,12 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/contto" element={<Contato />} />
+          <Route path="/contato" element={<Contato />} />
           <Route path="/sobre" element={<Sobre />} />
+
+          <Route path="/tarefas" element={<ListarTarefas />} />
+          <Route path="/tarefa/:id" element={<ListarUmaTarefa />} />
+        
         </Routes>
       </main>|
       <Footer />
