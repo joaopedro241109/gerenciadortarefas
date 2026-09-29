@@ -1,6 +1,6 @@
 import './index.css'
 import { useParams } from 'react-router-dom'
-import tarefas from '../../moook/tarefas'
+import tarefas from '../../mook/tarefas'
 
 function ListarUmaTarefa() {
     const {id} =useParams();
