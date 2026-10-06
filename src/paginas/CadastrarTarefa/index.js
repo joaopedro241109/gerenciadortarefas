@@ -1,40 +1,54 @@
 import { useState } from 'react';
 import './index.css';
-import tarefa from '../../mook/tarefas'
+
 import tarefas from '../../mook/tarefas';
 import { useNavigate } from 'react-router-dom';
 
 function CadastrarTarefa() {
     const navigate = useNavigate
+
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('')
     const [responsavel, setResponsavel] = useState('')
+    const [error, setError] = useState("")
 
-    function cadastrarTarefa(e){
+    function cadastrarTarefa(e) {
         e.preventDefault()
-        
 
-   try{
-    const addTarefa = {
-        'id':tarefa.length +1,
-        'titulo': titulo,
-        'descricao': descricao,
-        'responsavel': responsavel
+        if (!titulo.trim()) {
+            setError("O Campo TITULO não pode estar vazio!!!")
+            return;
+        }
+        if (!descricao.trim()) {
+            setError("O Campo DESCRIÇÃO não pode estar vazio!!!")
+            return;
+        }
+        if (!responsavel.trim()) {
+            setError("O Campo RESPONSÁVEL não pode estar vazio!!!")
+            return;
+        }
 
+
+        try {
+            const addTarefa = {
+                'id': tarefas.length + 1,
+                'titulo': titulo,
+                'descricao': descricao,
+                'responsavel': responsavel
+
+            }
+
+            tarefas.push(addTarefa);
+            setTitulo("");
+            setResponsavel("");
+            setDescricao("");
+
+            navigate(-1)
+        } catch (error) {
+            console.log("Erro ao cadastrar tarefas :" + error)
+
+        }
     }
-
-    tarefa.push(addTarefa);
-    setTitulo("");
-    setResponsavel("");
-    setDescricao("");
-
-    navigate(-1)
- } catch (error) {
-  console.log("Erro ao cadastrar tarefas :" + error)  
-  
- }
-}
-
 
     return (
         <main>
@@ -44,17 +58,23 @@ function CadastrarTarefa() {
             <section>
                 <h2>Formulário para cadastro de tarefas</h2>
                 <p>Entre com todos os campos!!!</p>
-
                 <div className='formulario'>
+                    {
+                        error && (
+                            <div className='error'>
+                                <p className='textoError'>{error}</p>
+                            </div>
+                        )
+                    }
                     <form onSubmit={cadastrarTarefa}>
                         <label>Nome da Tarefa</label>
-                        <input type="text" value={titulo} onChange={e=>setTitulo(e.target.value)} />
-                        
+                        <input type="text" value={titulo} onChange={e => setTitulo(e.target.value)} />
+
                         <label>Descrição</label>
-                        <textarea value={descricao} onChange={e=>setDescricao(e.target.value)} ></textarea>
-                        
+                        <textarea value={descricao} onChange={e => setDescricao(e.target.value)} ></textarea>
+
                         <label>Responsável</label>
-                        <input type="text" value={responsavel} onChange={e=>setResponsavel(e.target.value)} />
+                        <input type="text" value={responsavel} onChange={e => setResponsavel(e.target.value)} />
 
                         <button type='submit'>Salvar</button>
                     </form>
